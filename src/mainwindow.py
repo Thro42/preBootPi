@@ -9,12 +9,13 @@ from src.prebootout import PreBootOut
 from src.settings import SettingDlg
 from src.wifi import WifiSettingDlg
 from src.inventory import Inventory
+from src.raspiSettings import RaspiSettingsDlg
 
 class MainWindow(QMainWindow):
     def __init__(self, app):
         super().__init__()
         self.app = app #declare an app member
-        self.setWindowTitle("k3 Node Setup")
+        self.setWindowTitle("preBootPi Pi Setup")
         self.setWindowIcon(QIcon('src\images\pi_setup.png'))
         self.resize(800,600)
         #Menubar and menus
@@ -24,11 +25,17 @@ class MainWindow(QMainWindow):
         save_action = file_menu.addAction("Preboot output")
         save_action.triggered.connect(self.preboot_out)
 
-        save_action = file_menu.addAction("Settings")
+        setup_menu = file_menu.addMenu("Setup")
+
+        save_action = setup_menu.addAction("Raspberry OS")
+        save_action.triggered.connect(self.raspbian_setup)
+
+        save_action = setup_menu.addAction("Wifi Setup")
+        save_action.triggered.connect(self.wifi_setup)
+
+        save_action = setup_menu.addAction("Node Settings")
         save_action.triggered.connect(self.edit_setting)
 
-        save_action = file_menu.addAction("Wifi Setup")
-        save_action.triggered.connect(self.wifi_setup)
 
         save_action = file_menu.addAction("Generate Inventory")
         save_action.triggered.connect(self.save_inventory)
@@ -67,8 +74,11 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(self.nodeTree)
         
     def quit_app(self):
-        self.app.quit()
+        self.app.quitApp()
 
+    def getAppConfig(self):
+        return self.app.getAppConfig()
+    
     def add_node(self):
         model = self.nodeTree.getTreeModel()
         dlg =  NodeEditDlg(self, model, "Add Node")
@@ -133,3 +143,8 @@ class MainWindow(QMainWindow):
                     settings['access_point'] = apName
                     #print(imp_netdata['wifis']['wlan0']['access-points'][apName]['password'])
                     settings['access_passwd'] = imp_netdata['wifis']['wlan0']['access-points'][apName]['password']
+
+    def raspbian_setup(self):
+        appConfig = self.app.getAppSettings()
+        dlg = RaspiSettingsDlg(self,appConfig)
+        dlg.exec()

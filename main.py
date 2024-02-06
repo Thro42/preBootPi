@@ -1,15 +1,20 @@
 from PySide6.QtWidgets import QApplication
 import sys
 from src.mainwindow import MainWindow
-from src.appsttings import AppSettings
+from src.appsettings import AppSettings
 
 class MyApplication(QApplication):
     def __init__(self, args):
         super().__init__(args)
         self.appSettings = AppSettings()
-        
+
     def getAppSettings(self):
         return self.appSettings
+    
+    def quitApp(self):
+        if self.appSettings.isModify():
+            self.appSettings.save()
+        self.quit()
 
 app = MyApplication(sys.argv)
 

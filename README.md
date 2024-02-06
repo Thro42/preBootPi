@@ -8,4 +8,4 @@ After that I have to login to setup the Fix IP. That is OK for a single Pi but i
 At that point is started to create preBootPi, for easy prepare the Pi before the first Boot.
 
 [Pi Imager](https://www.raspberrypi.com/software/) make a great Job. With version 1.8 or higher it makes the work easier.
-Depending on the operating system it writes files to the Boot Partition that’s prepare the Pi on its first boot. On **Raspbian (Raspberry OS)** it prepares the file “firstrun.sh” on **Ubuntu** it's the files “user-data” and “network-config”. preBootPi will modify these files to add some more setting. And it will help to manage the nodes in your Cluster.
+Depending on the operating system it writes files to the Boot Partition that’s prepare the Pi on its first boot. On **Raspbian (Raspberry OS)** it prepares the file “*firstrun.sh*” on **Ubuntu** it's the files “*user-data*” and “*network-config*”. preBootPi will modify these files to add some more setting. And it will help to manage the nodes in your Cluster.

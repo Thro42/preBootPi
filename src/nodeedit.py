@@ -18,15 +18,12 @@ class NodeEditDlg(QDialog):
         self.setWindowIcon(QIcon('images\pi_setup.png'))
         self.resize(387, 196)
         self.buttonBox = QDialogButtonBox(self)
-        self.buttonBox.setObjectName(u"buttonBox")
         self.buttonBox.setGeometry(QRect(290, 20, 81, 151))
         self.buttonBox.setOrientation(Qt.Vertical)
         self.buttonBox.setStandardButtons(QDialogButtonBox.Cancel|QDialogButtonBox.Ok)
         self.formLayoutWidget = QWidget(self)
-        self.formLayoutWidget.setObjectName(u"formLayoutWidget")
         self.formLayoutWidget.setGeometry(QRect(9, 9, 271, 176))
         self.formLayout = QFormLayout(self.formLayoutWidget)
-        self.formLayout.setObjectName(u"formLayout")
         self.formLayout.setContentsMargins(0, 0, 0, 0)
 
         self.nameLbl = QLabel(self.formLayoutWidget)
@@ -56,10 +53,6 @@ class NodeEditDlg(QDialog):
         self.osCB = QComboBox(self.formLayoutWidget)
         for os in self.model.getOsList():
             self.osCB.addItem(os,os)
-        #self.osCB.addItem("ubuntu","ubuntu")
-        #self.osCB.addItem("bullseye","bullseye")
-        #self.osCB.addItem("bookworm","bookworm")
-        #self.osCB.addItem("dietpi","dietpi")
         self.formLayout.setWidget(3, QFormLayout.FieldRole, self.osCB)
 
         self.label_5 = QLabel(self.formLayoutWidget)
@@ -68,11 +61,6 @@ class NodeEditDlg(QDialog):
         self.typeCB = QComboBox(self.formLayoutWidget)
         for ctype in self.model.getTypeList():
             self.typeCB.addItem(ctype,ctype)
-#        self.typeCB.addItem("rp3","rp3")
-#        self.typeCB.addItem("rp4","rp4")
-#        self.typeCB.addItem("rp5","rp5")
-#        self.typeCB.addItem("cm4","cm4")
-#        self.typeCB.addItem("cm4","cm4")
         self.formLayout.setWidget(4, QFormLayout.FieldRole, self.typeCB)
 
         self.label_6 = QLabel(self.formLayoutWidget)
@@ -101,10 +89,6 @@ class NodeEditDlg(QDialog):
         node = self.model.getNodeByName(self.oldName)
         if node:
             self.model.removeNode(node)
-#        nodeArr = self.model.getNodeArry()
-#        for node in nodeArr:
-#            if node['name'] == newName:
-#                self.model.removeNode(node)
         self.model.addNode(newNodeJson)
         self.accept()
 

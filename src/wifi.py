@@ -18,37 +18,30 @@ class WifiSettingDlg(QDialog):
         self.model = model
         self.resize(332, 148)
         self.buttonBox = QDialogButtonBox(self)
-        self.buttonBox.setObjectName(u"buttonBox")
         self.buttonBox.setGeometry(QRect(10, 110, 311, 32))
         self.buttonBox.setOrientation(Qt.Horizontal)
         self.buttonBox.setStandardButtons(QDialogButtonBox.Cancel|QDialogButtonBox.Ok)
         self.formLayoutWidget = QWidget(self)
-        self.formLayoutWidget.setObjectName(u"formLayoutWidget")
         self.formLayoutWidget.setGeometry(QRect(10, 10, 311, 101))
         self.formLayout = QFormLayout(self.formLayoutWidget)
-        self.formLayout.setObjectName(u"formLayout")
         self.formLayout.setContentsMargins(0, 0, 0, 0)
         settings = self.model.getSettings()
 
         self.ssidLbl = QLabel(self.formLayoutWidget)
-        self.ssidLbl.setObjectName(u"ssidLbl")
         self.ssidLbl.setText(u"Wifi SSID")
 
         self.formLayout.setWidget(0, QFormLayout.LabelRole, self.ssidLbl)
 
         self.ssidEdit = QLineEdit(self.formLayoutWidget)
-        self.ssidEdit.setObjectName(u"ssidEdit")        
         self.formLayout.setWidget(0, QFormLayout.FieldRole, self.ssidEdit)
         self.ssidEdit.setText( settings['access_point'])
 
         self.passwLbl = QLabel(self.formLayoutWidget)
-        self.passwLbl.setObjectName(u"passwLbl")
         self.passwLbl.setText(u"Wifi Password")
 
         self.formLayout.setWidget(1, QFormLayout.LabelRole, self.passwLbl)
 
         self.passwEdit = QLineEdit(self.formLayoutWidget)
-        self.passwEdit.setObjectName(u"passwEdit")
         self.passwEdit.setEchoMode(QLineEdit.Password)
 
         self.formLayout.setWidget(1, QFormLayout.FieldRole, self.passwEdit)
@@ -59,7 +52,6 @@ class WifiSettingDlg(QDialog):
         self.passwEdit.setText( settings['access_passwd_clear'] )
 
         self.showPwCB = QCheckBox(self.formLayoutWidget)
-        self.showPwCB.setObjectName(u"showPwCB")
         self.showPwCB.setText(u"show Password")
         self.showPwCB.stateChanged.connect(self.toglePasswShow)
 
