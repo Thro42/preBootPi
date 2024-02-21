@@ -14,6 +14,7 @@ class AppSettings:
             self.setDefaultOption('COUNTRY_CODE', 'DE')
             self.setDefaultOption('TIMEZONE', 'Europe/Berlin')
             self.setDefaultOption('KEYBOARD_LAYOUT', 'de')
+            self.setDefaultOption('NODES_BASE_DIR', 'nodes/')
     
     def save(self):
         with open(self.filename, 'w') as configfile:
@@ -32,14 +33,16 @@ class AppSettings:
         self._isModify = True
         print('Set: ' + section +'-' + option +'-' +  value)
 
-    def getDefaultOption(self,section,option):
-        return self.config.get(section, option)
+    def getOption(self,section,option):
+        if self.config.has_option(section, option):
+            return self.config.get(section, option)
     
     def setDefaultOption(self, option,value):
         self.setOption('DEFAULTS', option, value)
 
     def getDefaultOption(self,option):
-        return self.config.get('DEFAULTS', option)
+        return self.getOption('DEFAULTS', option)
+        #return self.config.get('DEFAULTS', option)
     
     def getOptionList(self,section):
         if self.config.has_section(section) != True:

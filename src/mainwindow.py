@@ -22,6 +22,10 @@ class MainWindow(QMainWindow):
         menu_bar = self.menuBar()
         file_menu = menu_bar.addMenu("File")
 
+        save_action = file_menu.addAction("Open Node-base")
+        save_action.triggered.connect(self.open_node_base)
+
+        file_menu.addSeparator()
         save_action = file_menu.addAction("Preboot output")
         save_action.triggered.connect(self.preboot_out)
 
@@ -70,7 +74,16 @@ class MainWindow(QMainWindow):
         self.setStatusBar(QStatusBar(self))
 
         self.nodeTree = NodeTree(self)
-        self.nodeTree.loadTree()
+        # Check if node-Base is set
+        baseName = self.app.appSettings.getDefaultOption('NODES_BASE')
+        if baseName:
+            if os.path.isfile(baseName):
+                self.nodeTree.setNodeBase(baseName)
+            else:
+                self.open_node_base()
+        else:
+            self.open_node_base()
+        # self.nodeTree.loadTree()
         self.setCentralWidget(self.nodeTree)
         
     def quit_app(self):
@@ -148,3 +161,10 @@ class MainWindow(QMainWindow):
         appConfig = self.app.getAppSettings()
         dlg = RaspiSettingsDlg(self,appConfig)
         dlg.exec()
+
+    def open_node_base(self):
+        fileName, ok = QFileDialog.getOpenFileName(self, "Node Base", "", "*.json")
+        #print(fileName)
+        if os.path.isfile(fileName):
+            self.nodeTree.setNodeBase(fileName)
+            self.app.appSettings.setDefaultOption('NODES_BASE',fileName)

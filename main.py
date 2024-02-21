@@ -16,9 +16,13 @@ class MyApplication(QApplication):
             self.appSettings.save()
         self.quit()
 
-app = MyApplication(sys.argv)
+def main():
+    app = MyApplication(sys.argv)
 
-window = MainWindow(app)
-window.show()
+    window = MainWindow(app)
+    window.show()
 
-app.exec()
+    app.exec()
+
+if __name__ == '__main__':
+    main()

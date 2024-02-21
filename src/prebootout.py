@@ -13,6 +13,8 @@ from src.config import *
 class PreBootOut(QDialog):
     def __init__(self, parent, model):
         super().__init__(parent)
+        self.parent = parent
+        self.appSetting = parent.app.getAppSettings()
         self.model = model
         self.resize(292, 166)
         self.buttonBox = QDialogButtonBox(self)
@@ -107,10 +109,11 @@ class PreBootOut(QDialog):
     def prepareUbuntu(self, drive, node):
         print("Perpare ubuntu")
         settings = self.model.getSettings()
-        ubuntu = UbuntuSettings(settings,drive,node)
+        ubuntu = UbuntuSettings(self,drive,node)
         if ubuntu.check_sd_os() != True:
             QMessageBox.critical(self, 'Wrong SD-Card', 'SD-Card is not for ' + node['os'])
         else:
+            ubuntu.update_cmdline()
             if self.cbUser.isChecked() == True:
                 print("Perpare user-data")
                 ubuntu.save_user_data()

@@ -20,8 +20,8 @@ users:
   sudo: ALL=(ALL) NOPASSWD:ALL
 
 
-timezone: Europe/Berlin
+timezone: [timezone]
 runcmd:
-- localectl set-x11-keymap "de" pc105
+- localectl set-x11-keymap "[keyboard_layout]" pc105
 - setupcon -k --force || true
 

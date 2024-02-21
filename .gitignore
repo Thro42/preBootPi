@@ -160,3 +160,6 @@ cython_debug/
 #.idea/
 nodes/nodes.json
 prebootpi.ini
+templates/ubuntu/network-config.yaml
+templates/ubuntu/user-data copy
+templates/cmdline.txt

@@ -22,8 +22,13 @@ class NodeTree (QTreeWidget) :
         self.setContextMenuPolicy(Qt.CustomContextMenu)
         self.customContextMenuRequested.connect(self._show_context_menu)
 
+    def setNodeBase(self, filename):
+        self.nodeModel = NodeModel(filename)
+        self.loadTree()
+
     def loadTree(self):
         self.nodeModel.Load()
+        self.clear()
         rootNodse = QTreeWidgetItem(('Nodes',))
         self.nodeArr = self.nodeModel.getNodeArry()
         #print( self.nodeArr)
@@ -120,6 +125,6 @@ class NodeTree (QTreeWidget) :
         itemName = item.text(0)
         model = self.nodeModel
         node = model.getNodeByName(itemName)
-        dlg = PreBootOut(self,model)
+        dlg = PreBootOut(self.window ,model)
         dlg.selectNode(node)
         dlg.exec()
