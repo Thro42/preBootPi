@@ -4,7 +4,8 @@ INI_FILE = 'prebootpi.ini'
 NODES_BASE = 'nodes/nodes.json'
 NODES_SAMPLE = 'nodes/sanples-nodes.json'
 #Cluster
-NODES_INVENTORY = '../inventory/hosts.ini'
+NODES_INVENTORY = 'inventory/hosts.ini'
+NODES_INVENTORY_YAML = 'inventory/hosts.yaml'
 # Ubuntu
 #NET_CONF_TEMPLATE_ETH='templates/ubuntu/network-config.eth'
 #NET_CONF_TEMPLATE_WIFI='templates/ubuntu/network-config.wifi'

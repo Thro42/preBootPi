@@ -46,7 +46,12 @@ class RaspiSettingsDlg(QDialog):
         self.gridLayout.addWidget(self.InterfaceBtn, 1, 3, 1, 1)
 
         self.firstrunEdit = QLineEdit(self.gridLayoutWidget)
-        self.firstrunEdit.setText(self.options['firstrun'])
+        if 'firstrun' in self.options:
+            firstrun = self.options['firstrun']
+        else:
+            firstrun = 'firstrun.sh'
+            self.options['firstrun'] = firstrun
+        self.firstrunEdit.setText(firstrun)
         self.gridLayout.addWidget(self.firstrunEdit, 0, 2, 1, 1)
 
         self.firstRunBtn = QToolButton(self.gridLayoutWidget)

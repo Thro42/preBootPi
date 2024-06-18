@@ -163,3 +163,5 @@ prebootpi.ini
 templates/ubuntu/network-config.yaml
 templates/ubuntu/user-data copy
 templates/cmdline.txt
+prebootpi-sample.ini
+nodes/org-nodes.json
