@@ -35,9 +35,11 @@ class NodeTree (QTreeWidget) :
         for node in self.nodeArr:
             #print("node:", node)
             tNNode = QTreeWidgetItem((node['name'],node['ip'],node['network'],node['os'],node['typ'],node['rolle']))
+            #tNNode.resizeColumnToContents(0)
             rootNodse.addChild(tNNode)
         self.addTopLevelItem(rootNodse)
         self.expandAll()
+        self.setColumnWidth(0,200)
 
     def getTreeModel(self):
         return self.nodeModel

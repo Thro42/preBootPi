@@ -36,6 +36,16 @@ python main.py
 ```
 on the first run you see a folowing Window, for selecting the **node.json** file.
 
-[node Base](/images/nodebase.png)
+![node Base](/images/nodebase.png)
 
-open the nodes folder and select **node.json**
+open the nodes folder and select **node.json**. After select an press open you see the main Window with the samples nodes.
+
+![main Window](/images/main-start.png)
+
+### Setup
+
+for Raspian you need to select the Templates. open the Menu File->Setup->Raspberry OS
+
+![Setup Rasbian](/images/menu-pisetup.png)
+
+
