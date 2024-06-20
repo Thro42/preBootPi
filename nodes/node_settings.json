@@ -1,0 +1,5 @@
+{
+    "os_list": ["ubuntu", "bullseye", "bookworm"],
+    "type_list": ["rpi3", "rpi4", "rpi5", "cm4", "cm5"],
+    "role": ["master", "node", "storrage", "single"]
+}

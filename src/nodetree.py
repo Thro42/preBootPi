@@ -15,9 +15,8 @@ class NodeTree (QTreeWidget) :
         self.window = window
         self.nodeModel = NodeModel(NODES_BASE)
         self.setColumnCount(len(self.HEADER))
-        #self.setHeaderLabels(('Name', 'IP', 'network', 'os', 'typ', 'rolle'))
         self.setHeaderLabels(self.HEADER)
-        # self.resize(window.)
+
         self.itemDoubleClicked.connect(self.onClickItem)
         self.setContextMenuPolicy(Qt.CustomContextMenu)
         self.customContextMenuRequested.connect(self._show_context_menu)
@@ -35,7 +34,6 @@ class NodeTree (QTreeWidget) :
         for node in self.nodeArr:
             #print("node:", node)
             tNNode = QTreeWidgetItem((node['name'],node['ip'],node['network'],node['os'],node['typ'],node['rolle']))
-            #tNNode.resizeColumnToContents(0)
             rootNodse.addChild(tNNode)
         self.addTopLevelItem(rootNodse)
         self.expandAll()
@@ -65,10 +63,6 @@ class NodeTree (QTreeWidget) :
             if node:
                     dlg.fillNode(node)
             dlg.exec()
-#        for node in self.nodeArr:
-#            if node['name'] == item.text(0):
-#                dlg.fillNode(node)
-#        dlg.exec()
         self.reloadTree()
 
     def _show_context_menu(self, position):

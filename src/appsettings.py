@@ -15,7 +15,25 @@ class AppSettings:
             self.setDefaultOption('TIMEZONE', 'Europe/Berlin')
             self.setDefaultOption('KEYBOARD_LAYOUT', 'de')
             self.setDefaultOption('NODES_BASE_DIR', 'nodes/')
-    
+            self.setDefaultNodeBase()
+        baseName = self.getDefaultOption('NODES_BASE')
+        if baseName:
+            if os.path.isfile(baseName):
+                print('Set: NODES_BASE to' + baseName)
+            else:
+                self.setDefaultNodeBase()
+        else:
+            self.setDefaultNodeBase()
+
+    def setDefaultNodeBase(self):
+        if os.path.isfile(NODES_BASE):
+            self.setDefaultOption('NODES_BASE', NODES_BASE)
+            print('Set: NODES_BASE to' + NODES_BASE)
+        else:
+            self.setDefaultOption('NODES_BASE', NODES_SAMPLE)
+            print('Set: NODES_BASE to' + NODES_SAMPLE)
+        
+
     def save(self):
         with open(self.filename, 'w') as configfile:
             self.config.write(configfile)

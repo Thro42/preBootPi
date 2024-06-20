@@ -18,7 +18,11 @@ class NodeModel:
 
         with open(fname) as file_object:
                 # store file data in object
-                self.model = json.load(file_object)        
+                self.model = json.load(file_object)
+        settingfile = NODE_SETTINGS
+        with open(settingfile) as file_settings:
+                # store file data in object
+                self.settings = json.load(file_settings)
     
     def Save(self):
         try:
@@ -64,17 +68,16 @@ class NodeModel:
 
     def getOsList(self):
           osList = []
-          osList.append("ubuntu")
-          osList.append("bullseye")
-          osList.append("bookworm")
+          osList = self.settings['os_list']
 #          osList.append("dietpi") # Not yet implementetd
           return osList
 
     def getTypeList(self):
          typeList = []
-         typeList.append("rp3")
-         typeList.append("rp4")
-         typeList.append("rp5")
-         typeList.append("cm4")
-         typeList.append("cm5")
+         typeList = self.settings['type_list']
          return typeList
+    
+    def getRoleList(self):
+         rolelist = []
+         rolelist = self.settings['role']
+         return rolelist

@@ -42,6 +42,10 @@ open the nodes folder and select **node.json**. After select an press open you s
 
 ![main Window](/images/main-start.png)
 
+### add a node
+
+### edit a node
+
 ### Setup
 
 for Raspian you need to select the Templates. open the Menu File->Setup->Raspberry OS

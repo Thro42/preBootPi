@@ -67,10 +67,8 @@ class NodeEditDlg(QDialog):
         self.formLayout.setWidget(5, QFormLayout.LabelRole, self.label_6)
 
         self.roleCB = QComboBox(self.formLayoutWidget)
-        self.roleCB.addItem("master","master")
-        self.roleCB.addItem("node","node")
-        self.roleCB.addItem("storrage","storrage")
-        self.roleCB.addItem("single","single")
+        for role in self.model.getRoleList():
+            self.roleCB.addItem(role,role)
         self.formLayout.setWidget(5, QFormLayout.FieldRole, self.roleCB)
 
         self.setWindowTitle(self.title)
@@ -98,5 +96,13 @@ class NodeEditDlg(QDialog):
         self.ipEdit.setText(node['ip'])
         self.networkCB.setCurrentText(node['network'])
         self.osCB.setCurrentText(node['os'])
+        idx = self.model.getOsList().index(node['os'])
+        self.osCB.setCurrentIndex(idx)
+
         self.typeCB.setCurrentText(node['typ'])
+        idx = self.model.getTypeList().index(node['typ'])
+        self.typeCB.setCurrentIndex(idx)
+
+        idx = self.model.getRoleList().index(node['rolle'])
         self.roleCB.setCurrentText(node['rolle'])
+        self.roleCB.setCurrentIndex(idx)

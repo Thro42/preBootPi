@@ -1,6 +1,7 @@
 # Settings
 INI_FILE = 'prebootpi.ini'
 # Nodes DB
+NODE_SETTINGS = 'nodes/node_settings.json'
 NODES_BASE = 'nodes/nodes.json'
 NODES_SAMPLE = 'nodes/sanples-nodes.json'
 #Cluster
