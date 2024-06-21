@@ -2,3 +2,4 @@
 configobj ~= 5.0.8
 PyYAML ~= 6.0.1
 PySide6 ~= 6.6.1
+country_list ~= 1.1.0

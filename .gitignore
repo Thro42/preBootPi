@@ -165,3 +165,4 @@ templates/ubuntu/user-data copy
 templates/cmdline.txt
 prebootpi-sample.ini
 nodes/org-nodes.json
+inventory/hosts.ini
