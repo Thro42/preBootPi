@@ -25,3 +25,8 @@ DHCPCD_CONF_TEMPLATE_WIFI='templates/raspbian/dhcpcd.conf'
 DHCPCD_CONF_OUTPUT='dhcpcd.conf'
 # DietPi
 DIETPI_OUTPUT='dietpi.txt'
+# Gen Settings
+COUNTRY_LIST = 'src/data/countries.json'
+TIMEZONE_FILE = 'src/data/timezones.txt'
+#KEMAP_FILE    = 'src/data/keylayout.txt'
+KEMAP_FILE    = 'src/data/keylayout.json'

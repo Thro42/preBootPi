@@ -10,6 +10,8 @@ from src.settings import SettingDlg
 from src.wifi import WifiSettingDlg
 from src.inventory import Inventory
 from src.raspiSettings import RaspiSettingsDlg
+from src.gensetup import genSetupDlg
+from src.ansiblesettings import ansibleDlg
 
 class MainWindow(QMainWindow):
     def __init__(self, app):
@@ -40,6 +42,12 @@ class MainWindow(QMainWindow):
         save_action = setup_menu.addAction("Node Settings")
         save_action.triggered.connect(self.edit_setting)
 
+        save_action = setup_menu.addAction("Ansible Settings")
+        save_action.triggered.connect(self.ansible_setup)
+#ansible
+
+        save_action = setup_menu.addAction("General Settings")
+        save_action.triggered.connect(self.general_setup)
 
         save_action = file_menu.addAction("Generate Inventory")
         save_action.triggered.connect(self.save_inventory)
@@ -118,10 +126,16 @@ class MainWindow(QMainWindow):
         dlg.exec()
 
     def save_inventory(self):
+        appConfig = self.app.getAppSettings()
+        inventory_type = appConfig.getDefaultOption('inventory_type')
+#        inventory_path = appConfig.getDefaultOption('inventory_path')
         model = self.nodeTree.getTreeModel()
         nodeArr = model.getNodeArry()
-        inventory = Inventory()
-        inventory.generate(nodeArr)
+        inventory = Inventory(appConfig)
+        if(inventory_type == 'INI'):
+            inventory.generate(nodeArr)
+        if(inventory_type == 'YAML'):
+            inventory.generate_yaml(nodeArr)
         QMessageBox.information(self, 'Save Inventory', 'Inventory generated')
 
     def ubuntu_import_user_data(self):
@@ -168,3 +182,13 @@ class MainWindow(QMainWindow):
         if os.path.isfile(fileName):
             self.nodeTree.setNodeBase(fileName)
             self.app.appSettings.setDefaultOption('NODES_BASE',fileName)
+
+    def general_setup(self):
+        appConfig = self.app.getAppSettings()
+        dlg = genSetupDlg(self,appConfig)
+        dlg.exec()
+
+    def ansible_setup(self):
+        appConfig = self.app.getAppSettings()
+        dlg = ansibleDlg(self,appConfig)
+        dlg.exec()

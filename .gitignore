@@ -166,3 +166,8 @@ templates/cmdline.txt
 prebootpi-sample.ini
 nodes/org-nodes.json
 inventory/hosts.ini
+src/data/all.csv
+src/data/countries_codes_and_coordinates.csv
+src/data/keylayout.csv
+src/data/keylayout.txt
+src/data/timezones.txt

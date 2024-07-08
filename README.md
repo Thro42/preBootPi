@@ -25,6 +25,7 @@ Clone this repository. Then copy or rename the file **sanples-nodes.json** in th
 ```bash
 git clone https://github.com/Thro42/preBootPi.git
 cd preBootPi
+pip install -r requirements.txt
 rename nodes\sanples-nodes.json nodes.json
 ```
 

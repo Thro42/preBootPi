@@ -1,0 +1,10 @@
+master:
+  hosts:
+    ubuntu-master:
+      ansible_host: 192.168.0.10
+      storage: longhorn
+node:
+  hosts:
+    ubutu-node:
+      ansible_host: 192.168.0.11
+      storage: none

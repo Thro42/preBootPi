@@ -62,6 +62,7 @@ class NodeTree (QTreeWidget) :
             node = model.getNodeByName(itemName)
             if node:
                     dlg.fillNode(node)
+                    dlg.fillVars(node)
             dlg.exec()
         self.reloadTree()
 
